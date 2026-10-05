@@ -18,6 +18,12 @@ public class Student {
         array[array.length - 1] = n;
     }
 
+    public void replace(int n,int ind){
+        validNumber(n);
+        validIndex(ind);
+        array[ind] = n;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,6 +52,12 @@ public class Student {
     private void validNumber(int n){
         if (n < 2 || n >5){
             throw new IllegalArgumentException("ocenka in [2-5]");
+        }
+    }
+
+    private void validIndex(int ind){
+        if (ind < 0 || ind >= array.length){
+            throw new ArrayIndexOutOfBoundsException(ind);
         }
     }
 
