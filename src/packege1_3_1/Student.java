@@ -1,3 +1,5 @@
+package packege1_3_1;
+
 import java.util.Arrays;
 
 public class Student {
@@ -70,3 +72,11 @@ public class Student {
     }
 
 }
+
+//packege1_3_1.Student v = new packege1_3_1.Student("Vacu",3,4,5);
+//packege1_3_1.Student p = new packege1_3_1.Student("Petu",v.getArray());
+//        System.out.println(v);
+//        System.out.println(p);
+//        p.replace(5,0);
+//        System.out.println(v);
+//        System.out.println(p);
