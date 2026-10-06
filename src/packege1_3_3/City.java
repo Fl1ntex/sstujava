@@ -1,5 +1,7 @@
 package packege1_3_3;
 
+import java.util.Arrays;
+
 public class City {
     private String name;
     private Way[] array;
@@ -8,7 +10,7 @@ public class City {
         isNull(name);
         isNull(array);
         isNullElemets(array);
-        this.array = array;
+        this.array = Arrays.copyOf(array,array.length);
         this.name = name;
     }
 
