@@ -81,14 +81,20 @@ public class Department {
         }
     }
 
-    @Override
-    public String toString(){
-        String rez = name + ' ';
+    public String getEmployee(){
+        String rez = "";
         if (array != null){
             for (Employee i:array){
                 rez += i.getName() + ' ';
             }
         }
+        return rez;
+    }
+
+    @Override
+    public String toString(){
+        String rez = name + ' ';
+        rez += getEmployee();
         return rez;
     }
 }
@@ -105,3 +111,11 @@ public class Department {
 //        System.out.println(e1);
 //        System.out.println(e2);
 //        System.out.println(e3);
+
+//Employee e1 = new Employee("petrov");
+//Employee e2 = new Employee("kozlov");
+//Employee e3 = new Employee("sidorov");
+//
+//Department d = new Department("IT", e1, e2, e3);
+//
+//System.out.println(e2.getEmployeeDepartment());

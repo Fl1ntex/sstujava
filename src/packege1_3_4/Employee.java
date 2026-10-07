@@ -31,6 +31,10 @@ public class Employee {
         }
     }
 
+    public String getEmployeeDepartment(){
+        return otdel.getEmployee();
+    }
+
     @Override
     public String toString(){
         String rez = name + " ";
