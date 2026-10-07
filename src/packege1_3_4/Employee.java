@@ -34,7 +34,6 @@ public class Employee {
     @Override
     public String toString(){
         String rez = name + " ";
-
         if (otdel != null){
             rez += "worked in " + otdel.getName();
             if (otdel.getLeader() != null){
@@ -51,5 +50,4 @@ public class Employee {
         }
         return rez;
     }
-
 }

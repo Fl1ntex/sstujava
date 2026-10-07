@@ -89,19 +89,18 @@ public class Department {
                 rez += i.getName() + ' ';
             }
         }
-
         return rez;
     }
 }
 
-
-
-//Department d = new Department("IT");
+//Employee e1 = new Employee("petrov");
+//Employee e2 = new Employee("kozlov");
+//Employee e3 = new Employee("sidorov");
 //
-//Employee e1 = new Employee("petrov",d);
-//Employee e2 = new Employee("kozlov",d);
-//Employee e3 = new Employee("sidorov",d);
+//Department d = new Department("IT", e1, e2, e3);
 //
+//
+//        System.out.println(d);
 //
 //        System.out.println(e1);
 //        System.out.println(e2);
