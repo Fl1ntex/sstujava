@@ -13,7 +13,7 @@ public class Employee {
         isNull(otdel);
         this.name = name;
         this.otdel = otdel;
-
+        otdel.setNewEmployee(this);
     }
 
     public String getName(){
@@ -42,12 +42,13 @@ public class Employee {
                     rez += " leager to " + otdel.getLeader().getName();
                 }
                 else{
-                    rez += " not have leader";
+                    rez += " and leader";
                 }
             }
-
+            else{
+                rez += " not have leader";
+            }
         }
-
         return rez;
     }
 

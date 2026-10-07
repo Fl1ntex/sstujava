@@ -17,6 +17,7 @@ public class Department {
         isNull(leader);
         this.name = name;
         this.leader = leader;
+        this.setNewLeader(leader);
     }
 
     public Department(String name,Employee leader,Employee... array ){
@@ -27,12 +28,37 @@ public class Department {
         this.name = name;
         this.array = Arrays.copyOf(array,array.length);
         this.leader = leader;
+        this.setNewLeader(leader);
+        for (Employee e:array){
+            e.setOtdel(this);
+        }
     }
 
     public void setNewEmployee(Employee e){
         if (array != null){
             array = Arrays.copyOf(array,array.length + 1);
             array[array.length - 1] = e;
+        }
+        else{
+            array = new Employee[]{e};
+        }
+    }
+
+    public void setNewLeader(Employee e){
+        isNull(e);
+        this.leader = e;
+        e.setOtdel(this);
+        if (array != null){
+            for (Employee i:array){
+                if (i == e){
+                    return;
+                }
+            }
+
+            setNewEmployee(e);
+        }
+        else{
+            array = new Employee[]{e};
         }
     }
 
@@ -53,6 +79,18 @@ public class Department {
         for (Object o:val){
             isNull(o);
         }
+    }
+
+    @Override
+    public String toString(){
+        String rez = name + ' ';
+        if (array != null){
+            for (Employee i:array){
+                rez += i.getName() + ' ';
+            }
+        }
+
+        return rez;
     }
 }
 
