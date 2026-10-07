@@ -6,6 +6,11 @@ public class City {
     private String name;
     private Way[] array;
 
+    public City(String name){
+        isNull(name);
+        this.name = name;
+    }
+
     public City(String name,Way... array){
         isNull(name);
         isNull(array);
@@ -31,8 +36,13 @@ public class City {
     @Override
     public  String toString(){
         String rez = "-----------------------\nCity " + name + ' ';
-        for (int i = 0;i < array.length;i++){
-            rez += "\n" + array[i];
+        if (array != null && array.length > 0){
+            for (int i = 0;i < array.length;i++){
+                rez += "\n" + array[i];
+            }
+        }
+        else{
+            rez += " not have way";
         }
         return rez + "\n-----------------------\n";
     }
