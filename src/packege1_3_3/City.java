@@ -38,6 +38,7 @@ public class City {
     }
 
     void pSetWay(Way way){
+        isNull(way);
         if (this.array == null){
             this.array = new Way[]{way};
         }
