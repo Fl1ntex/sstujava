@@ -1,13 +1,32 @@
 package packege1_3_3;
 
-public class Way {
+class Way {
     private int price;
-    private String toCity;
+    private City toCity;
+    private City fromCity;
 
-    public Way(String city,int price){
-        isNull(city);
-        this.toCity = city;
-        this.price = price;
+    public Way(City fromCity, City toCity,int price){
+        isNull(fromCity);
+        isNull(toCity);
+//        if (fromCity.isHaveWay(this)){
+//            return;
+//        }
+//        else{
+            this.fromCity = fromCity;
+            this.toCity = toCity;
+            this.price = price;
+            fromCity.pSetWay(this);
+//        }
+    }
+
+    public City getFromCity(){
+        return fromCity;
+    }
+    public City getToCity() {
+        return toCity;
+    }
+    public int getPrice() {
+        return price;
     }
 
     private void isNull(Object val){
@@ -18,6 +37,6 @@ public class Way {
 
     @Override
     public String toString(){
-        return "Gorod " + toCity + " stoimost " + price;
+        return "Gorod " + toCity.getName() + " stoimost " + price;
     }
 }

@@ -11,25 +11,59 @@ public class City {
         this.name = name;
     }
 
-    public City(String name,Way... array){
-        isNull(name);
-        isNull(array);
-        isNullElemets(array);
-        this.array = Arrays.copyOf(array,array.length);
-        this.name = name;
+    public String getName(){
+        return name;
+    }
+
+    public void setWay(City toCity,int price,boolean isReverseWay){
+        isNull(toCity);
+        if (array != null){
+            if (isHaveWay(toCity,price)){
+                return;
+            }
+            else{
+                new Way(this, toCity,price);
+                if (isReverseWay == true) {
+                    new Way(toCity,this,price);
+                }
+            }
+        }
+        else {
+            new Way(this, toCity,price);
+            if (isReverseWay == true){
+                new Way(toCity,this,price);
+            }
+        }
     }
 
 
+    void pSetWay(Way way){
+        if (this.array == null){
+            this.array = new Way[]{way};
+        }
+        else{
+            array = Arrays.copyOf(array,array.length + 1);
+            array[array.length - 1] = way;
+        }
+    }
+
+    private boolean isHaveWay(City toCity,int price){
+        isNull(toCity);
+        for (Way w:array){
+            if (this == w.getFromCity()){
+                if (toCity == w.getToCity()){
+                    if (price == w.getPrice()){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
     private void isNull(Object val){
         if (val == null) {
             throw new NullPointerException();
-        }
-    }
-    private void isNullElemets(Object[] val){
-        isNull(val);
-        for (Object o:val){
-            isNull(o);
         }
     }
 
