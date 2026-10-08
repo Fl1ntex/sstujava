@@ -22,20 +22,20 @@ public class City {
                 return;
             }
             else{
-                new Way(this, toCity,price);
-                if (isReverseWay == true) {
-                    new Way(toCity,this,price);
-                }
+                designer(this,toCity,price,isReverseWay);
             }
         }
         else {
-            new Way(this, toCity,price);
-            if (isReverseWay == true){
-                new Way(toCity,this,price);
-            }
+            designer(this,toCity,price,isReverseWay);
         }
     }
 
+    private void designer(City fromCity, City toCity, int price,boolean isReverseWay){
+        new Way(this, toCity,price);
+        if (isReverseWay == true){
+            new Way(toCity,this,price);
+        }
+    }
 
     void pSetWay(Way way){
         if (this.array == null){
@@ -83,28 +83,33 @@ public class City {
 }
 
 
-//Way w1 = new Way("F",1);
-//Way w2 = new Way("B",5);
-//Way w3 = new Way("D",6);
-//City a = new City("A",w1,w2,w3);
-//        System.out.println(a);
-//Way w4 = new Way("B",1);
-//Way w5 = new Way("E",2);
-//City f = new City("F",w4, w5);
-//        System.out.println(f);
-//Way w6 = new Way("A",5);
-//Way w7 = new Way("C",3);
-//City b = new City("B",w6, w7);
+//        City a1 = new City("A");
+//        City a2 = new City("A");
+//        City b = new City("B");
+//        City f = new City("F");
+//        City e = new City("E");
+//        City d = new City("D");
+//        City c = new City("C");
+//
+//        a1.setWay(b,5,true);
+//        a1.setWay(f,1,false);
+//        a1.setWay(d,6,true);
+//
+//        b.setWay(c,3,true);
+//
+//        f.setWay(b,1,false);
+//        f.setWay(e,2,true);
+//
+//        c.setWay(d,4,true);
+//
+//
+//        a1.setWay(b,5,true); //
+//        b.setWay(a2,5,true); //
+//
+//
+//        System.out.println(a1);
 //        System.out.println(b);
-//Way w8 = new Way("F",2);
-//City E = new City("E",w8);
-//        System.out.println(E);
-//Way w9 = new Way("B",3);
-//Way w10 = new Way("D",4);
-//City C = new City("C",w9, w10);
-//        System.out.println(C);
-//Way w11 = new Way("C",4);
-//Way w12 = new Way("E",2);
-//Way w13 = new Way("A",6);
-//City D = new City("D",w11,w12,w13);
-//        System.out.println(D);
+//        System.out.println(f);
+//        System.out.println(e);
+//        System.out.println(c);
+//        System.out.println(d);

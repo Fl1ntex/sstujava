@@ -8,23 +8,20 @@ class Way {
     public Way(City fromCity, City toCity,int price){
         isNull(fromCity);
         isNull(toCity);
-//        if (fromCity.isHaveWay(this)){
-//            return;
-//        }
-//        else{
-            this.fromCity = fromCity;
-            this.toCity = toCity;
-            this.price = price;
-            fromCity.pSetWay(this);
-//        }
+        this.fromCity = fromCity;
+        this.toCity = toCity;
+        this.price = price;
+        fromCity.pSetWay(this);
     }
 
     public City getFromCity(){
         return fromCity;
     }
+
     public City getToCity() {
         return toCity;
     }
+
     public int getPrice() {
         return price;
     }
