@@ -1,12 +1,17 @@
-package packege1_3_2;
+package packege1_4.packege1_4_1;
 
 public class Point {
     private int x;
     private int y;
 
-    public Point(int x,int y){
+    public Point(int x, int y){
         this.x = x;
         this.y = y;
+    }
+    public Point(Point p){
+        isNull(p);
+        this.x = p.getX();
+        this.y = p.getY();
     }
 
     public void setX(int x){
@@ -27,5 +32,9 @@ public class Point {
     public String toString(){
         return "{" + x + ":" + y + "}";
     }
-
+    private void isNull(Object val){
+        if (val == null) {
+            throw new NullPointerException();
+        }
+    }
 }

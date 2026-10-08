@@ -1,10 +1,10 @@
-package packege1_4_1;
+package packege1_3.packege1_3_2;
 
 public class Point {
     private int x;
     private int y;
 
-    public Point(int x, int y){
+    public Point(int x,int y){
         this.x = x;
         this.y = y;
     }

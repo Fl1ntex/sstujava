@@ -1,10 +1,14 @@
-package packege1_4_1;
+package packege1_3.packege1_3_2;
 
 import java.util.Arrays;
 
 
 public class Line {
     private Point[] array;
+
+    public Line(){
+
+    }
 
     public Line(Point... array){
         isNullElemets(array);
@@ -32,9 +36,33 @@ public class Line {
     @Override
     public String toString(){
         String rez = "Line: ";
-        for (Point p:array){
-            rez += p + ",";
+        if (array != null){
+            for (Point p:array){
+                rez += p + ",";
+            }
+        }
+        else{
+            rez += "not have a point";
         }
         return rez;
     }
 }
+
+//Point p1 = new Point(1,5);
+//Point p2 = new Point(2,8);
+//Point p3 = new Point(5,3);
+//Line l1 = new Line(p1,p2);
+//        l1.addPoint(p3);
+//
+//Point p4 = new Point(2,-5);
+//Point p5 = new Point(4,-8);
+//
+//Line l2 = new Line(p1,p4,p5,p3);
+//
+//        System.out.println(l1);
+//        System.out.println(l2);
+//
+//        p1.setX(10);
+//
+//        System.out.println(l1);
+//        System.out.println(l2);

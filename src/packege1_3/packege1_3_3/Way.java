@@ -1,4 +1,4 @@
-package packege1_3_3;
+package packege1_3.packege1_3_3;
 
 class Way {
     private int price;
