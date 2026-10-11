@@ -5,13 +5,38 @@ public class MathCalc {
 
     }
 
+    public static Fractions sum(Fractions a,int b){
+        return sum(a,new Fractions(b,1));
+    }
     public static Fractions sum(Fractions a, Fractions b) {
         int nokAB = nok(a.getDenominator(), b.getDenominator());
 
         int newANumerator = (nokAB / a.getDenominator()) * a.getNumerator();
         int newBNumerator = (nokAB / b.getDenominator()) * b.getNumerator();
-
+        if (a.getIsMoreNull() == false){
+            newANumerator *= -1;
+        }
+        if (b.getIsMoreNull() == false){
+            newBNumerator *= -1;
+        }
         return reduce(new Fractions(newANumerator + newBNumerator, nokAB));
+    }
+
+    public static Fractions subtraction(Fractions a,int b){
+        return subtraction(a,new Fractions(b,1));
+    }
+    public static Fractions subtraction(Fractions a, Fractions b){
+        int nokAB = nok(a.getDenominator(), b.getDenominator());
+
+        int newANumerator = (nokAB / a.getDenominator()) * a.getNumerator();
+        int newBNumerator = (nokAB / b.getDenominator()) * b.getNumerator();
+        if (a.getIsMoreNull() == false){
+            newANumerator *= -1;
+        }
+        if (b.getIsMoreNull() == false){
+            newBNumerator *= -1;
+        }
+        return reduce(new Fractions(newANumerator - newBNumerator, nokAB));
     }
 
     private static int nok(int a,int b){
@@ -36,6 +61,9 @@ public class MathCalc {
     }
 
     private static int nod(int a, int b){
+        if (a == 0 || b == 0){
+            return 1;
+        }
         int max,min;
         if (a > b){
             return helpnod(a,b);

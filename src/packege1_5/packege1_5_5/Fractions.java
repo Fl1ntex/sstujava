@@ -3,14 +3,35 @@ package packege1_5.packege1_5_5;
 public class Fractions {
     private int numerator; // числитель
     private int denominator; // знаменатель
+    private boolean isMoreNull;
 
     public Fractions(int numerator,int denominator){
         if (denominator == 0){
             throw new IllegalArgumentException();
         }
         else{
-            this.denominator = denominator;
-            this.numerator = numerator;
+            this.denominator = Math.abs(denominator);
+            this.numerator = Math.abs(numerator);
+            if (numerator == 0){
+                isMoreNull = true;
+                return;
+            }
+            if (numerator > 0){
+                if (denominator > 0){
+                    isMoreNull = true;
+                }
+                else {
+                    isMoreNull = false;
+                }
+            }
+            else{
+                if (denominator > 0){
+                    isMoreNull = false;
+                }
+                else {
+                    isMoreNull = true;
+                }
+            }
         }
     }
 
@@ -20,6 +41,9 @@ public class Fractions {
 
     public int getDenominator() {
         return denominator;
+    }
+    public boolean getIsMoreNull(){
+        return isMoreNull;
     }
 
     public void setDenominator(int denominator) {
@@ -33,6 +57,13 @@ public class Fractions {
 
     @Override
     public String toString(){
-        return numerator + "/" + denominator;
+        String rez = "";
+        if (numerator == 0){
+            return "0";
+        }
+        if (isMoreNull == false){
+            rez += "-";
+        }
+        return rez + numerator + "/" + denominator;
     }
 }
