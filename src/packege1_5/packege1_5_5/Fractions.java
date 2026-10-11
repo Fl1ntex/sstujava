@@ -42,6 +42,7 @@ public class Fractions {
     public int getDenominator() {
         return denominator;
     }
+
     public boolean getIsMoreNull(){
         return isMoreNull;
     }
@@ -52,6 +53,10 @@ public class Fractions {
 
     public void setNumerator(int numerator) {
         this.numerator = numerator;
+    }
+
+    public void setIsMoreNull(boolean isMoreNull){
+        this.isMoreNull = isMoreNull;
     }
 
 

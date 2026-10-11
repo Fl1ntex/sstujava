@@ -13,30 +13,61 @@ public class MathCalc {
 
         int newANumerator = (nokAB / a.getDenominator()) * a.getNumerator();
         int newBNumerator = (nokAB / b.getDenominator()) * b.getNumerator();
-        if (a.getIsMoreNull() == false){
-            newANumerator *= -1;
-        }
-        if (b.getIsMoreNull() == false){
-            newBNumerator *= -1;
-        }
+
+        newANumerator *= signChange(a);
+        newBNumerator *= signChange(b);
+
         return reduce(new Fractions(newANumerator + newBNumerator, nokAB));
     }
 
-    public static Fractions subtraction(Fractions a,int b){
-        return subtraction(a,new Fractions(b,1));
+    public static Fractions minus(Fractions a, int b){
+        return minus(a,new Fractions(b,1));
     }
-    public static Fractions subtraction(Fractions a, Fractions b){
+    public static Fractions minus(Fractions a, Fractions b){
         int nokAB = nok(a.getDenominator(), b.getDenominator());
 
         int newANumerator = (nokAB / a.getDenominator()) * a.getNumerator();
         int newBNumerator = (nokAB / b.getDenominator()) * b.getNumerator();
-        if (a.getIsMoreNull() == false){
-            newANumerator *= -1;
-        }
-        if (b.getIsMoreNull() == false){
-            newBNumerator *= -1;
-        }
+
+        newANumerator *= signChange(a);
+        newBNumerator *= signChange(b);
+
         return reduce(new Fractions(newANumerator - newBNumerator, nokAB));
+    }
+
+    public static Fractions multiplication(Fractions a,int b){
+        return multiplication(a,new Fractions(b,1));
+    }
+    public static Fractions multiplication(Fractions a,Fractions b){
+        Fractions f = new Fractions(a.getNumerator() * b.getNumerator(),a.getDenominator() * b.getDenominator());
+        if ((a.getIsMoreNull() && b.getIsMoreNull()) || (!a.getIsMoreNull() && !b.getIsMoreNull())){
+            f.setIsMoreNull(true);
+        }
+        else{
+            f.setIsMoreNull(false);
+        }
+        return reduce(f);
+    }
+
+    public static Fractions division(Fractions a,int b){
+        return division(a,new Fractions(b,1));
+    }
+    public static Fractions division(Fractions a,Fractions b){
+        if (b.getNumerator() == 0){
+            throw new ArithmeticException();
+        }
+        Fractions f = new Fractions(b.getDenominator(), b.getNumerator());
+        f.setIsMoreNull(b.getIsMoreNull());
+        return multiplication(a, f);
+    }
+
+
+
+    private static int signChange(Fractions a) { // смена знака
+        if (a.getIsMoreNull() == false){
+            return -1;
+        }
+        return 1;
     }
 
     private static int nok(int a,int b){
@@ -53,7 +84,7 @@ public class MathCalc {
         return reza;
     }
 
-    private static Fractions reduce(Fractions fractions){
+    private static Fractions reduce(Fractions fractions){ // сокращение
         int thisnod = nod(fractions.getDenominator(), fractions.getNumerator());
         fractions.setNumerator(fractions.getNumerator() /  thisnod);
         fractions.setDenominator(fractions.getDenominator() /  thisnod);
@@ -83,5 +114,4 @@ public class MathCalc {
         }
         return helpnod(min,rez);
     }
-
 }
