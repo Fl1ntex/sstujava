@@ -47,15 +47,18 @@ public class Fractions {
         return isMoreNull;
     }
 
-    public void setDenominator(int denominator) {
+    void setDenominator(int denominator) {
+        if (denominator == 0){
+            throw new IllegalArgumentException();
+        }
         this.denominator = denominator;
     }
 
-    public void setNumerator(int numerator) {
+    void setNumerator(int numerator) {
         this.numerator = numerator;
     }
 
-    public void setIsMoreNull(boolean isMoreNull){
+    void setIsMoreNull(boolean isMoreNull){
         this.isMoreNull = isMoreNull;
     }
 
