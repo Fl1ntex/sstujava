@@ -1,42 +1,31 @@
 package packege1_3.packege1_3_1;
 
-import java.util.Arrays;
+
+import java.util.List;
 
 public class Student {
     private String name;
-    private int[] array;
+    private List<Integer> array;
 
-    public Student(String name, int... array) {
+    public Student(String name, int... array){
+
+    }
+
+    public Student(String name, List<Integer> array) {
         isNull(name);
         isNull(array);
-        validNumbers(array);
+        isValidNum(array);
         this.name = name;
-        this.array = Arrays.copyOf(array,array.length);
+        this.array = List.copyOf(array);
     }
 
-    public void add(int n){
-        validNumber(n);
-        array = Arrays.copyOf(array,array.length + 1);
-        array[array.length - 1] = n;
-    }
 
-    public void replace(int n,int ind){
-        validNumber(n);
-        validIndex(ind);
-        array[ind] = n;
-    }
 
-    public String getName() {
-        return name;
-    }
 
-    public int[] getArray() {
-        return Arrays.copyOf(array,array.length);
-    }
 
-    public void setName(String name) {
-        isNull(name);
-        this.name = name;
+    @Override
+    public String toString(){
+       return "";
     }
 
     private void isNull(Object val){
@@ -44,31 +33,15 @@ public class Student {
             throw new NullPointerException();
         }
     }
-
-    private void validNumbers(int[] array){
-        for (int n:array){
-            validNumber(n);
+    private void isValidNum(Integer i){
+        if (i < 2 || i > 5){
+            throw new IllegalArgumentException("not in range(2,5)");
         }
     }
-
-    private void validNumber(int n){
-        if (n < 2 || n >5){
-            throw new IllegalArgumentException("ocenka in [2-5]");
+    private void isValidNum(List<Integer> array){
+        for (Integer i:array){
+            isValidNum(i);
         }
-    }
-
-    private void validIndex(int ind){
-        if (ind < 0 || ind >= array.length){
-            throw new ArrayIndexOutOfBoundsException(ind);
-        }
-    }
-
-    @Override
-    public String toString(){
-        if (array == null){
-            return name + " net ocenok";
-        }
-        return name + " " + Arrays.toString(array);
     }
 
 }

@@ -4,6 +4,9 @@ public class House {
     private final int n;
 
     public House(int n){
+        if (n <= 0){
+            throw new IllegalArgumentException();
+        }
         this.n = n;
     }
 
