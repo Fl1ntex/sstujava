@@ -12,17 +12,19 @@ public class Name {
         this(name,surname,null);
     }
     public Name(String name, String surname, String patronymic){
-        isNull(name);
+        int cnt = 0;
+        if (name.isBlank()) cnt++;
+        if (surname.isBlank()) cnt++;
+        if (patronymic.isBlank()) cnt++;
+        if (cnt == 0){
+            throw new NullPointerException();
+        }
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
     }
 
-    private void isNull(Object val){
-        if (val == null){
-            throw new NullPointerException();
-        }
-    }
+
 
     public String getName() {
         return name;
@@ -38,13 +40,11 @@ public class Name {
 
     @Override
     public String toString(){
-        if (surname == null && patronymic == null){
-            return name;
-        }
-        else if (patronymic == null){
-            return surname + " " + name;
-        }
-        return surname + " " + name + " " + patronymic;
+        String rez = "";
+        if (name.isBlank()) rez += name;
+        if (surname.isBlank()) rez += " " + surname;
+        if (patronymic.isBlank()) rez += " " + patronymic;
+        return rez;
     }
 
 }
