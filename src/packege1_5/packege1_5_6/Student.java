@@ -5,19 +5,46 @@ import java.util.ArrayList;
 public class Student {
     private String name;
     private ArrayList<Integer> array = new ArrayList<>();
+    private Rule rule;
 
     public Student(String name){
         isNull(name);
         this.name = name;
     }
 
-    public Student(String name, int... array) {
+    public Student(String name, Rule rule){
         isNull(name);
-        isNull(array);
-        validNumbers(array);
+        isNull(rule);
         this.name = name;
-        for (int n:array){
-            this.array.add(n);
+        this.rule = rule;
+    }
+
+    public Student(String name, Rule ruleObj, int... array) {
+        isNull(name);
+        isNull(ruleObj);
+        isNull(array);
+        this.name = name;
+        this.rule = ruleObj;
+        for (int i:array){
+            if (!ruleObj.rule(i)){
+                throw new IllegalArgumentException();
+            }
+            this.array.add(i);
+        }
+    }
+
+    public void add(Object val){
+        isNull(val);
+        if (rule != null){
+            if (rule.rule(val)){
+                array.add((Integer) val);
+            }
+            else{
+                throw new IllegalArgumentException();
+            }
+        }
+        else{
+            throw new IllegalArgumentException("not have a rule");
         }
     }
 
@@ -25,23 +52,19 @@ public class Student {
         return name;
     }
 
+
     public void setName(String name) {
         isNull(name);
         this.name = name;
     }
 
-    public ArrayList<Integer> getArray() {
-        return new ArrayList<>(array);
-    }
-
-    public void addNumber(int n){
-        validNumber(n);
-        array.add(n);
-    }
-
     public double avg(){
+        if (array.isEmpty()){
+            return 0;
+        }
+
         double rez = 0;
-        for (int i:array){
+        for (int i : array){
             rez += i;
         }
         return rez / array.size();
@@ -59,30 +82,29 @@ public class Student {
         return false;
     }
 
+
     private void isNull(Object val){
-        if (val == null) {
+        if (val == null){
             throw new NullPointerException();
-        }
-    }
-
-    private void validNumbers(int[] array){
-        for (int n:array){
-            validNumber(n);
-        }
-    }
-
-    private void validNumber(int n){
-        if (n < 2 || n >5){
-            throw new IllegalArgumentException("ocenka in [2-5]");
         }
     }
 
     @Override
     public String toString(){
-        if (array == null){
+        if (array.isEmpty()) {
             return name + " net ocenok";
         }
         return name + " " + array;
     }
 }
 
+//Rule r = new Rule() {
+//    @Override
+//    public boolean rule(Object obj) {
+//        return (Integer)obj <= 5 && (Integer)obj >= 2;
+//    }
+//};
+//Student s = new Student("dwada",r);
+//        s.add(5);
+//double d = s.avg();
+//        System.out.println(s.isBest());
