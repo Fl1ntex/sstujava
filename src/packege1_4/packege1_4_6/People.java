@@ -6,75 +6,67 @@ public class People {
     private Name name;
     private People father;
 
-    public People(String name){
-        this(new Name(name));
-    }
-
-    public People(String fatherName, String name){
-        isNull(fatherName);
-        isNull(name);
-        this.father = new People(fatherName);
-        this.name = new Name(name);
-    }
-
-    public People(Name father, Name name){
-        isNull(father);
+    public People(Name name, People father) {
         isNull(name);
         this.name = name;
-        this.father = new People(father);
+        this.father = father;
     }
 
-    public People(Name name, People dady){
-        isNull(name);
-        isNull(dady);
-        this.name = name;
-        this.father = dady;
+    public People(String name) {
+        this(new Name(name), (People) null);
+        // this(new Name(name), null);
     }
 
-    public People(Name name){
-        isNull(name);
-        this.name = name;
+    public People(Name name) {
+        this(name, (People) null);
     }
 
+    public People(String fatherName, String name) {
+        this(new Name(name), new People(fatherName));
+    }
 
-    public void setFather(People father){
+    public People(Name father, Name name) {
+        this(name, new People(father));
+    }
+
+    public void setFather(People father) {
         isNull(father);
         this.father = father;
     }
 
-    public Name getName(){
+    public Name getName() {
         return name;
     }
-    public People getFather(){
+
+    public People getFather() {
         return father;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String rez = "Человек с именем: ";
-        if (name.getSurname() == null){
-            if (father != null){
-                if (father.getName().getSurname() != null){
-                    rez += father.getName().getSurname();
-                }
+
+        if (name.getSurname() == null) {
+            if (father != null && father.getName().getSurname() != null) {
+                rez += father.getName().getSurname();
             }
         }
         else {
             rez += name.getSurname();
         }
+
         rez += " " + name.getName();
-        if (name.getPatronymic() == null){
-            if (father != null){
-                if (father.getName().getName() != null){
-                    rez +=  " " + father.getName().getName() + "ович";
-                }
+
+        if (name.getPatronymic() == null) {
+            if (father != null && father.getName().getName() != null) {
+                rez += " " + father.getName().getName() + "ович";
             }
         }
-
         return rez;
     }
-    private void isNull(Object val){
-        if (val == null){
+
+    private void isNull(Object val) {
+        if (val == null) {
             throw new NullPointerException();
         }
     }

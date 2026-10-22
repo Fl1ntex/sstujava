@@ -1,43 +1,58 @@
 package packege1_4.packege1_4_7;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Student {
     private String name;
-    private int[] array;
+    private ArrayList<Integer> array = new ArrayList<>();
+    private Rule rule;
 
     public Student(String name){
         isNull(name);
         this.name = name;
     }
 
-    public Student(String name, int... array) {
+    public Student(String name, Rule rule){
         isNull(name);
-        isNull(array);
-        validNumbers(array);
+        isNull(rule);
         this.name = name;
-        this.array = Arrays.copyOf(array,array.length);
+        this.rule = rule;
     }
 
-    public void add(int n){
-        validNumber(n);
-        array = Arrays.copyOf(array,array.length + 1);
-        array[array.length - 1] = n;
+    public Student(String name, Rule ruleObj, int... array) {
+        isNull(name);
+        isNull(ruleObj);
+        isNull(array);
+        this.name = name;
+        this.rule = ruleObj;
+        for (int i:array){
+            if (!ruleObj.rule(i)){
+                throw new IllegalArgumentException();
+            }
+            this.array.add(i);
+        }
     }
 
-    public void replace(int n,int ind){
-        validNumber(n);
-        validIndex(ind);
-        array[ind] = n;
+    public void add(Object val){
+        isNull(val);
+        if (rule != null){
+            if (rule.rule(val)){
+                array.add((Integer) val);
+            }
+            else{
+                throw new IllegalArgumentException();
+            }
+        }
+        else{
+            throw new IllegalArgumentException("not have a rule");
+        }
     }
 
     public String getName() {
         return name;
     }
 
-    public int[] getArray() {
-        return Arrays.copyOf(array,array.length);
-    }
 
     public void setName(String name) {
         isNull(name);
@@ -45,36 +60,17 @@ public class Student {
     }
 
     private void isNull(Object val){
-        if (val == null) {
+        if (val == null){
             throw new NullPointerException();
-        }
-    }
-
-    private void validNumbers(int[] array){
-        for (int n:array){
-            validNumber(n);
-        }
-    }
-
-    private void validNumber(int n){
-        if (n < 2 || n >5){
-            throw new IllegalArgumentException("ocenka in [2-5]");
-        }
-    }
-
-    private void validIndex(int ind){
-        if (ind < 0 || ind >= array.length){
-            throw new ArrayIndexOutOfBoundsException(ind);
         }
     }
 
     @Override
     public String toString(){
-        if (array == null){
+        if (array.isEmpty()) {
             return name + " net ocenok";
         }
-        return name + " " + Arrays.toString(array);
+        return name + " " + array;
     }
-
 }
 
