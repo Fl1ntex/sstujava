@@ -15,9 +15,7 @@ public class Square {
 
     public Square(Point p, int lenght){
         start = new Point(p);
-        if (lenght <= 0){
-            throw new IllegalArgumentException();
-        }
+        isValid(lenght);
         this.lenght = lenght;
     }
 
@@ -26,10 +24,14 @@ public class Square {
     }
 
     public void setLenght(int lenght) {
-        if (lenght <= 0){
+        isValid(lenght);
+        this.lenght = lenght;
+    }
+
+    private void isValid(int x){
+        if (x <= 0){
             throw new IllegalArgumentException();
         }
-        this.lenght = lenght;
     }
 
     public Line getLine(){
