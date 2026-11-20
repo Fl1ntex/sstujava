@@ -1,12 +1,13 @@
 package packege1_5.packege1_5_7;
 
 import packege1_4.packege1_4_1.Point;
+import packege2_3.packege2_3_5.GetFullLenght;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class Line {
+public class Line implements GetFullLenght {
     private ArrayList<Point> array = new ArrayList<Point>();
 
     public Line(){
@@ -28,7 +29,7 @@ public class Line {
         Collections.addAll(array, point);
     }
 
-    public double getLenghtLine() {
+    public double getLenght() {
         if (array.size() >= 2){
             double rez = 0f;
             for (int i = 0; i < array.size() - 1; i++) {

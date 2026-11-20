@@ -4,7 +4,6 @@ public abstract class Animal {
     protected String name;
 
     protected Animal(String name){
-        isNull(name);
         this.name = name;
     }
 
@@ -14,11 +13,5 @@ public abstract class Animal {
     @Override
     public String toString(){
         return getClass().getSimpleName() + " " + name;
-    }
-
-    protected void isNull(Object val){
-        if (val == null){
-            throw new NullPointerException();
-        }
     }
 }

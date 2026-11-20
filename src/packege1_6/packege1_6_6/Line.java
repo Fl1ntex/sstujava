@@ -1,9 +1,10 @@
 package packege1_6.packege1_6_6;
 
 import packege1_4.packege1_4_1.Point;
+import packege2_3.packege2_3_5.GetFullLenght;
 
 
-public class Line {
+public class Line implements GetFullLenght {
     private Point start;
     private Point end;
 
@@ -19,7 +20,7 @@ public class Line {
     }
 
     public void setPointEnd(Point pointEnd){
-        start = new Point(pointEnd);
+        end = new Point(pointEnd);
     }
 
     public Point getStart() {
@@ -35,8 +36,8 @@ public class Line {
         end = new Point(x2,y2);
     }
 
-    public int getLenght(){
-        return (int)Math.sqrt(Math.pow(start.getX() - end.getX(),2f) + Math.pow(start.getY() - end.getY(),2f));
+    public double getLenght(){
+        return Math.sqrt(Math.pow(start.getX() - end.getX(),2f) + Math.pow(start.getY() - end.getY(),2f));
     }
 
 
