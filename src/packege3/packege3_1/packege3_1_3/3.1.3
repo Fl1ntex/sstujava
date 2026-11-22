@@ -1,0 +1,12 @@
+Fractions f = new Fractions(11,3);
+        Sum s = (array -> {
+            double rez = 0;
+            for (Number n:array){
+                rez += n.doubleValue();
+            }
+            return rez;
+        });
+        String str = "12345678912345678912";
+        BigInteger b = new BigInteger(str);
+        double rez = s.sum(2, f, 2.3, b);
+        System.out.println(rez);
