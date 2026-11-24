@@ -26,6 +26,9 @@ public class ClosedLine extends Line {
         throw new RuntimeException("start and end dolgnu buti ==");
     }
 
+    public int getSizeArray(){
+        return array.size();
+    }
 
     @Override
     public String toString(){
